@@ -14,7 +14,19 @@
       {{else}}
         <li><a href="/contact">Contact</a></li>
       {{/if}}
-      <li><a href="/about">About</a></li>
+
+      {{#if isNew}}
+        <li class="active"><a href="/new">NewPhone</a></li>
+      {{else}}
+        <li><a href="/new">New</a></li>
+      {{/if}}
+
+       {{#if isAdd}}
+        <li class="active"><a href="/add">Add</a></li>
+      {{else}}
+        <li><a href="/add">Add</a></li>
+      {{/if}}
+     
 
     </ul>
   </div>

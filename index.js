@@ -3,7 +3,16 @@ const app = express()
 const exphbs = require('express-handlebars')
 const path = require('path')
 
+// Routes
+const homeRouter = require('./routes/home')
+const contactRouter = require('./routes/contact')
+const addRouter = require('./routes/add')
+const newRouter = require('./routes/newPhone')
+
 app.use(express.static(path.join(__dirname, 'public')))
+
+// post zaproslrni ishlatadi
+app.use(express.urlencoded({extended: true}))
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -11,22 +20,13 @@ const hbs = exphbs.create({
 })
 
 app.engine('hbs', hbs.engine)
-app.set('views engine', 'hbs')
+app.set('view engine', 'hbs')
 app.set('views', 'views')
 
-app.get('/', (req, res) => {
-    res.render('index.hbs', {
-        title: 'Home',
-        isHome: true
-    })
-})
-
-app.get('/contact', (req, res) => {
-    res.render('contact.hbs', {
-        title: 'Contact',
-        isContact: true
-    })
-})
+app.use('/', homeRouter)
+app.use('/contact', contactRouter)
+app.use('/add', addRouter)
+app.use('/new', newRouter)
 
 const port = 3000
 app.listen(port, () => {
