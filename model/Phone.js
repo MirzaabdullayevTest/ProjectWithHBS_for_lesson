@@ -20,7 +20,7 @@ class Phone {
     }
 
     async save() {
-        const phones = await Phone.getAll()
+        const phones = await Phone.getAll()  // eski yangi
         phones.push(this.toJSON())
         return new Promise((resolve, reject) => {
             fs.writeFile(path.join(__dirname, '..', 'data', 'db.json'),
@@ -44,6 +44,39 @@ class Phone {
                     resolve(JSON.parse(data))  // massiv 
                 }
             })
+        })
+    }
+
+    static async getById(id) {
+        const allData = await Phone.getAll()
+        return allData.find(c => c.id === id)
+    }
+
+
+    static async update(body) {
+        const phones = await Phone.getAll()
+
+        // console.log('Body', body);
+
+        const indx = phones.findIndex(c => c.id === body.id) // 0 1 2 3
+
+        // console.log('index', indx);
+
+        phones[indx] = body
+
+        // console.log('phones', phones);
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'db.json'),
+                JSON.stringify(phones),
+                (err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                })
         })
     }
 
