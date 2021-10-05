@@ -21,12 +21,17 @@
         <li><a href="/new">New</a></li>
       {{/if}}
 
-       {{#if isAdd}}
+      {{#if isAdd}}
         <li class="active"><a href="/add">Add</a></li>
       {{else}}
         <li><a href="/add">Add</a></li>
       {{/if}}
-     
+
+      {{#if isCard}}
+        <li class="active"><a href="/card/add">Card</a></li>
+      {{else}}
+        <li><a href="/card/add">Card</a></li>
+      {{/if}}
 
     </ul>
   </div>
