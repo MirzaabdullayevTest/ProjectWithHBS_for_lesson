@@ -7,7 +7,6 @@ const path = require('path')
 const homeRouter = require('./routes/home')
 const contactRouter = require('./routes/contact')
 const addRouter = require('./routes/add')
-const newRouter = require('./routes/newPhone')
 const cardRouter = require('./routes/card')
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -27,7 +26,6 @@ app.set('views', 'views')
 app.use('/', homeRouter)
 app.use('/contact', contactRouter)
 app.use('/add', addRouter)
-app.use('/new', newRouter)
 app.use('/card', cardRouter)
 
 const port = 3000

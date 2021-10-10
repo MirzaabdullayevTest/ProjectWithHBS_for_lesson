@@ -17,3 +17,19 @@ h1 {
     font-size: 50px;
     font-weight: 700;
 }
+
+.products{
+    display: flex;
+    justify-content: center;
+}
+
+.contacts{
+    text-align: center;
+    font-weight: 700;
+    color: rgb(138, 135, 135);
+}
+
+.contacts a{
+    color: rgb(138, 135, 135);
+
+}
