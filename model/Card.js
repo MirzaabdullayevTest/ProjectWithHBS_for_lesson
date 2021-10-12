@@ -38,6 +38,34 @@ class Card {
         })
     }
 
+    static async remove(id) {
+        const card = await Card.fetch()
+
+        const idx = card.phones.findIndex(phone => phone.id === id) //
+        // console.log(idx);
+        const phone = card.phones[idx]
+
+        if (phone.count === 1) {
+            // Obyektni o'chiramiz
+            card.phones = card.phones.filter(phone => phone.id !== id)
+        } else {
+            // count ni kamaytiramiz
+            card.phones[idx].count--
+        }
+        // card.price = card.price - card.phones[idx].price
+        card.price -= phone.price
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(p, JSON.stringify(card), (err) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(card)
+                }
+            })
+        })
+    }
+
     static async fetch() {
         return new Promise((resolve, reject) => {
             fs.readFile(p, 'utf-8', (err, content) => {
