@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const phone = new Phone(req.body.name, req.body.price, req.body.img)
+    const phone = new Phone({
+        name: req.body.name,
+        price: req.body.price,
+        img: req.body.img
+    })
     await phone.save()
     res.redirect('/')
 })
